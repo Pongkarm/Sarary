@@ -24,9 +24,9 @@ def change_balance(filename, increase_amount):
         if line.strip().startswith("#"):
             continue
 
-        match = re.search(r"คงเหลือ\s+(\d+)\s+บาท", line)
+        match = re.search(r"คงเหลือ\s+(\d+(\.\d+)?)\s+บาท", line)
         if match:
-            old_balance = int(match.group(1))
+            old_balance = float(match.group(1))
             new_balance = old_balance + increase_amount
             print(f"[{filename}] เพิ่มเงินจาก: {old_balance} → {new_balance}")
             lines[i] = f"คงเหลือ {new_balance} บาท\n"
